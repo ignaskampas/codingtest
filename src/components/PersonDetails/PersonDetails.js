@@ -1,56 +1,113 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./personDetails.css";
 
 export default function PersonDetails() {
     const { id } = useParams();
     const [personData, setPersonData] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        function handleErrors(response) {
+            if (!response.ok) {
+                navigate("not-found");
+                throw Error(response.statusText);
+            }
+            return response;
+        }
         fetch(`/services/test/person/${id}`)
+            .then(handleErrors)
             .then((response) => response.json())
             .then((data) => {
                 setPersonData(data);
-                console.log(data);
-            });
+            })
+            .catch((error) => console.log(error));
     }, []);
 
     return (
-        <div>
+        <div className="person-details">
+            <h2>Person Details</h2>
             {personData && (
-                <div>
-                    <ul>
-                        <li>Person Guid: {personData.personGuid}</li>
-                        <li>User Guid: {personData.userGuid}</li>
-                        <li>First Name: {personData.firstName}</li>
-                        <li>Last Name: {personData.lastName}</li>
-                        <li>
-                            Sex:{" "}
-                            {personData.sex ? personData.sex : "Not provided"}
-                        </li>
-                        <li>DOB: {personData.dob}</li>
-                        <li>Email: {personData.email}</li>
-                        <li>
-                            Phone:{" "}
-                            {personData.phone
-                                ? personData.phone
-                                : "Not provided"}
-                        </li>
-                        <li>House Name: {personData.houseName}</li>
-                        <li>Street: {personData.street}</li>
-                        <li>Town: {personData.town}</li>
-                        <li>County: {personData.county}</li>
-                        <li>Country: {personData.countryName}</li>
-                        <li>Postcode: {personData.postcode}</li>
-                        <li>AddressId: {personData.addressId}</li>
-                        <li>
-                            Is deleted:{" "}
-                            {personData.isDeleted
-                                ? personData.isDeleted
-                                : "Null"}
-                        </li>
-                    </ul>
-                </div>
+                <table className="person-table">
+                    <tbody>
+                        <tr>
+                            <th>Person Guid:</th>
+                            <td>{personData.personGuid}</td>
+                        </tr>
+                        <tr>
+                            <th>User Guid:</th>
+                            <td>{personData.userGuid}</td>
+                        </tr>
+                        <tr>
+                            <th>First Name:</th>
+                            <td>{personData.firstName}</td>
+                        </tr>
+                        <tr>
+                            <th>Last Name:</th>
+                            <td>{personData.lastName}</td>
+                        </tr>
+                        <tr>
+                            <th>Sex:</th>
+                            <td>
+                                {personData.sex
+                                    ? personData.sex
+                                    : "Not provided"}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>DOB:</th>
+                            <td>{personData.dob}</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>{personData.email}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone:</th>
+                            <td>
+                                {personData.phone
+                                    ? personData.phone
+                                    : "Not provided"}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>House Name:</th>
+                            <td>{personData.houseName}</td>
+                        </tr>
+                        <tr>
+                            <th>Street:</th>
+                            <td>{personData.street}</td>
+                        </tr>
+                        <tr>
+                            <th>Town:</th>
+                            <td>{personData.town}</td>
+                        </tr>
+                        <tr>
+                            <th>County:</th>
+                            <td>{personData.county}</td>
+                        </tr>
+                        <tr>
+                            <th>Country:</th>
+                            <td>{personData.countryName}</td>
+                        </tr>
+                        <tr>
+                            <th>Postcode:</th>
+                            <td>{personData.postcode}</td>
+                        </tr>
+                        <tr>
+                            <th>AddressId:</th>
+                            <td>{personData.addressId}</td>
+                        </tr>
+                        <tr>
+                            <th>Is Deleted:</th>
+                            <td>
+                                {personData.phone
+                                    ? personData.phone
+                                    : "Not provided"}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             )}
         </div>
     );

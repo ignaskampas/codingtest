@@ -1,3 +1,27 @@
-ul {
-    list-style: none;
+.person-details h2{
+    font-size: 1.5rem;
+}
+
+.person-table{
+    margin-top: 15px;
+    padding-top: 5px;
+    border-collapse: collapse;
+    width: nowrap;
+}
+
+.person-table .th {
+    font-weight: bold;
+}
+
+.person-details{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+.person-table th, .person-table td {
+    padding: 7px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    white-space: nowrap;
 }

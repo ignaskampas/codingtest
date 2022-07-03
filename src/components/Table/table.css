@@ -1,0 +1,84 @@
+.content{
+    display: inline-block;
+}
+
+.table-header-cells{
+    position: sticky;
+    top: 0px;
+    background-color: #ffffff;
+    box-shadow: inset 0 -1px 0 #ddd;
+}
+
+.people-table{
+    padding-top: 5px;
+    border-collapse: collapse;
+    width: nowrap;
+}
+.people-table .th{
+    font-weight: bold;
+}
+
+.person-row {
+    cursor: pointer;
+}
+.person-row:hover{
+    background-color: #f2f2f2;
+}
+
+.people-table tr {
+border-bottom: 1px solid #ddd;
+}
+
+.people-table th, .people-table td {
+    padding: 7px 15px;
+    text-align: left;
+    
+    white-space: nowrap;
+}
+
+.first-cell-in-row{
+    padding-left: 0px !important;
+}
+
+.last-cell-in-row {
+    padding-right: 0px !important;
+}
+
+.paginate-container-center{
+    width: 100vw;
+    text-align: center;
+}
+
+.paginationContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination{
+    list-style: none;
+    display: inline-block;  
+    color: black;  
+}
+
+.pagination > li{
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pagination > li > a{
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+}
+
+.pagination > li > a:hover{
+    background-color: gray;
+    color: white;
+}
+
+.active{
+    background-color: gray;
+    color: white;
+    padding: 5px 0;
+}
